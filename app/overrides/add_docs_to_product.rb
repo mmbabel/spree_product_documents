@@ -1,14 +1,14 @@
 Deface::Override.new(
         :virtual_path => 'spree/products/show',
         :name=> 'add_docs_to_product',
-        :insert_after => '[data-hook="product_images"]',
+        :insert_after => '[data-hook="description"]',
         :text => '
 
-
+<div data-hook="product_documents">
 <% unless @product.documents.any? || @product.variant_documents.any? %>
 <% else %>
-  <h3 class="product-section-title"><%= Spree.t(:documents) %></h3>
-  <table class="table" style="font-size: small" data-hook="documents_table">
+<h3 id="documents-title" class="product-section-title"><%= Spree.t(:documents) %></h3>
+  <table class="table table-striped"  style="font-size: small" data-hook="documents_table">
     <thead>
       <tr data-hook="documents_header">
         <th><%= Spree.t(:document_url) %></th>
@@ -40,5 +40,5 @@ Deface::Override.new(
     </tbody>
  </table>
 <% end %>
-    '
+</div>    '
         )
